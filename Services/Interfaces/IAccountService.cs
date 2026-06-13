@@ -1,5 +1,4 @@
 ﻿using Banking_API.Models;
-using Banking_API.Models.Responses;
 
 namespace Banking_API.Services.Interfaces
 {
