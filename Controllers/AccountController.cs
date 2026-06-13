@@ -18,6 +18,7 @@ namespace Banking_API.Controllers
         [HttpPost("reset")]
         public IActionResult Reset()
         {
+            _accountService.Reset();
             return Ok();
         }
 
