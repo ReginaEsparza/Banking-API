@@ -21,13 +21,13 @@ namespace Banking_API.Controllers
             return Ok();
         }
 
-        [HttpGet("balance/{account_id}")]
-        public IActionResult GetBalance(int account_id) 
+        [HttpGet("balance")]
+        public IActionResult GetBalance([FromQuery(Name = "account_id")] int accountId) 
         {
-            var balance = _accountService.GetBalance(account_id);
+            var balance = _accountService.GetBalance(accountId);
 
-            if(balance == null) {
-                return BadRequest(balance);
+            if (balance == null) {
+                return NotFound(0);
             }
             return Ok(balance);
         }
