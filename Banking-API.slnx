@@ -1,3 +1,8 @@
 <Solution>
-  <Project Path="Banking-API.csproj" />
+  <Folder Name="/API/">
+    <Project Path="Banking-API.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="../Banking-API.Tests/Banking-API.Tests.csproj" Id="197a8f0b-d159-4fae-82ae-621fd4ba0003" />
+  </Folder>
 </Solution>
