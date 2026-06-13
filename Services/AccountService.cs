@@ -1,5 +1,4 @@
 ﻿using Banking_API.Models;
-using Banking_API.Models.Responses;
 using Banking_API.Services.Interfaces;
 
 namespace Banking_API.Services
@@ -18,7 +17,7 @@ namespace Banking_API.Services
             _accounts.Clear();
         }
 
-        public decimal? GetBalance(string accountId)
+        public decimal? GetBalance(int accountId)
         {
             return _accounts.FirstOrDefault(a => a.Id == accountId)?.Balance;
         }
