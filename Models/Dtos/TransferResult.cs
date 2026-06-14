@@ -1,4 +1,4 @@
-﻿namespace Banking_API.Models
+﻿namespace Banking_API.Models.Dtos
 {
     public class TransferResult
     {

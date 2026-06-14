@@ -1,4 +1,5 @@
 ﻿using Banking_API.Models;
+using Banking_API.Models.Dtos;
 using Banking_API.Services.Interfaces;
 
 namespace Banking_API.Services
@@ -22,13 +23,13 @@ namespace Banking_API.Services
             return _accounts.FirstOrDefault(a => a.Id == accountId)?.Balance;
         }
 
-        public Account Deposit(int destination, decimal amount)
+        public Account Deposit(int destinationId, decimal amount)
         {
-            var account = GetAccount(destination);
+            var account = GetAccount(destinationId);
 
             if (account == null)
             {
-                return CreateAccount(destination, amount);
+                return CreateAccount(destinationId, amount);
             }
 
             account.Balance += amount;
@@ -36,9 +37,9 @@ namespace Banking_API.Services
             return account;
         }       
 
-        public Account? Withdraw(int origin, decimal amount)
+        public Account? Withdraw(int originId, decimal amount)
         {
-            var account = GetAccount(origin);
+            var account = GetAccount(originId);
 
             if (account == null)
             {
@@ -47,22 +48,22 @@ namespace Banking_API.Services
 
             if(account.Balance < amount)
             {
-                return null;// ou lançar uma exceção, dependendo do comportamento desejado
+                return null;
             }
 
             account.Balance -= amount;
             return account;
         }
 
-        public TransferResult? Transfer(int origin, int destination, decimal amount)
+        public Transfer? Transfer(int originId, int destinationId, decimal amount)
         {
-            var withdrawnAccount = Withdraw(origin, amount);
+            var withdrawnAccount = Withdraw(originId, amount);
             if (withdrawnAccount == null)
             {
-                return null;// ou lançar uma exceção, dependendo do comportamento desejado
+                return null;
             }
-            var depositedAccount = Deposit(destination, amount);
-            return new TransferResult
+            var depositedAccount = Deposit(destinationId, amount);
+            return new Transfer
             {
                 Origin = withdrawnAccount,
                 Destination = depositedAccount

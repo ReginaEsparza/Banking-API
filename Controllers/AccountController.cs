@@ -42,9 +42,9 @@ namespace Banking_API.Controllers
                 {
                     var account = _accountService.Deposit(destinationId, request.Amount);
 
-                    return Created(string.Empty, new
+                    return Created(string.Empty, new DepositResult
                     {
-                        destination = account
+                        Destination = account
                     });
                 }
 
@@ -57,9 +57,9 @@ namespace Banking_API.Controllers
                         return NotFound(0);
                     }
 
-                    return Created(string.Empty, new
+                    return Created(string.Empty, new WithdrawalResult
                     {
-                        origin = account
+                        Origin = account
                     });
                 }
 
@@ -73,10 +73,10 @@ namespace Banking_API.Controllers
                         return NotFound(0);
                     }
 
-                    return Created(string.Empty, new
+                    return Created(string.Empty, new TransferResult
                     {
-                        origin = result.Origin,
-                        destination = result.Destination
+                        Origin = result.Origin,
+                        Destination = result.Destination
                     });
                 }
 
